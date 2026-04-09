@@ -6,6 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
+    base: './',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -16,17 +17,20 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
+      port: 5007,
+      allowedHosts: ['simawt.cn'],
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       proxy: {
         '/api/tts': {
-          target: 'http://localhost:3001',
+          target: 'http://localhost:5000',
           changeOrigin: true,
         }
       }
     },
     preview: {
+      port: 5007,
       proxy: {
         '/api/tts': {
           target: 'http://localhost:5000',

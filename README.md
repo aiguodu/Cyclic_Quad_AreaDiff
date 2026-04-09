@@ -18,3 +18,5 @@ View your app in AI Studio: https://ai.studio/apps/0468e443-a161-4451-bb94-fad3a
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+题目线上演示请看：https://math.simawt.cn/cyclic-quad-areadiff/
